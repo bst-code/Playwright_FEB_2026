@@ -43,9 +43,6 @@ export default defineConfig({
       name: 'QA',
       use: { ...devices['Desktop Chrome'],  
            headless : false, // We can see browser vsiually
-         
- 
-   
            },
     },
 
