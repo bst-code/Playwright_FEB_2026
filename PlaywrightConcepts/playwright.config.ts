@@ -49,20 +49,20 @@ export default defineConfig({
            },
     },
 
-    {
-      name: 'STAGE',
-      use: { ...devices['Desktop Firefox'],
-         headless : true, // it runs on headless mode - no visual
-       },
-    },
+    // {
+    //   name: 'STAGE',
+    //   use: { ...devices['Desktop Firefox'],
+    //      headless : true, // it runs on headless mode - no visual
+    //    },
+    // },
 
-    {
-      name: 'PROD',
-      use: { ...devices['Desktop Safari'],
+    // {
+    //   name: 'PROD',
+    //   use: { ...devices['Desktop Safari'],
           
-        headless : false,
-       },
-    },
+    //     headless : false,
+    //    },
+    // },
 
 
     /* Test against mobile viewports. */
