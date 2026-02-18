@@ -36,3 +36,7 @@ for(let i = 0; i<names.length; i++)
 {
     console.log('welcome ',names[i]);
 }
+
+
+//Assignment 
+// Remove duplicates from list 
