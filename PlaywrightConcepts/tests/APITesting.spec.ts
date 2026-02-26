@@ -28,7 +28,6 @@ for(let i = 0; i< resBody.length; i++)
 
 test.only("Post - Create new user", async ({request})=>{
 
-
     const res = await request.post("https://api.bsparksoftwaretechnologies.com/api/users", {
         data:{ 
              "name": "Shivya",

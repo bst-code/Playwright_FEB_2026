@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
 
-    "QA": "npx playwright test APITesting.spec.ts --project QA",
+    "QA": "npx playwright test LoginStorage.spec.ts --project QA",
     "STAGE": "npx playwright test browserLaunch.spec.ts --project SATGE",
     "PROD": "npx playwright test browserLaunch.spec.ts --project PROD"
     

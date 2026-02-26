@@ -25,7 +25,8 @@ export default defineConfig({
     trace: 'on-first-retry',
 
     navigationTimeout: 60 * 1000,
-    actionTimeout: 30*1000
+    actionTimeout: 30*1000,
+    storageState: './storage/auth.json'
   
   },
 
