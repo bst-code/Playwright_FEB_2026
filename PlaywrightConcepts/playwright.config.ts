@@ -14,10 +14,14 @@ import { defineConfig, devices } from '@playwright/test';
 export default defineConfig({
   testDir: './tests',
   /* Run tests in files in parallel */
+  
   fullyParallel: true,
+  workers: 2,
+
+
   forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
+  retries: 2,
+  //workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
   /* Common settings for all the projects */
   use: {
@@ -27,7 +31,7 @@ export default defineConfig({
     navigationTimeout: 60 * 1000,
     actionTimeout: 30*1000,
     storageState: './storage/auth.json'
-  
+    
   },
 
   timeout: 60 * 1000,
