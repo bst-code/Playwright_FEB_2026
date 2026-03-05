@@ -1,0 +1,42 @@
+class customers
+{
+    //Accessmodifiers - Public, Private and Protected
+
+    public name:String = "Bala"
+    private age:number = 36
+    protected location:string ="chennai"
+
+    public getCustomerName()
+    {
+        console.log("My name is John");
+        console.log("My age is ", this.age);
+        console.log("My location is", this.location);  
+    }
+
+    //Encapsulation is the concept of hiding the internal data of a class and allowing access to it only through methods.
+    //getter and setters - which is going to get and set value of private variables
+    public getAge():number
+    {
+        return this.age
+    }
+
+    public setAge(n1:number):void
+    {
+        this.age = n1
+    }
+}
+
+
+const obj1 = new customers()
+obj1.name = "murugan"
+
+console.log(obj1.name);
+obj1.getCustomerName()
+console.log("Encapsulation -->",obj1.getAge());
+obj1.setAge(100)
+console.log("Encapsulation -->",obj1.getAge());
+
+
+
+
+
