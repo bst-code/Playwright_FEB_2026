@@ -11,6 +11,7 @@ class customers {
         console.log("My age is ", this.age);
         console.log("My location is", this.location);
     }
+    //Encapsulation is the concept of hiding the internal data of a class and allowing access to it only through methods.
     //getter and setters - which is going to get and set value of private variables
     getAge() {
         return this.age;
