@@ -24,6 +24,14 @@ export class playwrightGenerics
        return data || ""
     }
 
+
+     async getTextFromElement(ele: Locator): Promise<string>
+    {
+       const data = await ele.textContent()
+       console.log("getText from element ", data);
+       return data || ""
+    }
+
     //Button - click, doubleclick, rightclick
 
     async clickElement(ele: Locator): Promise<void>
