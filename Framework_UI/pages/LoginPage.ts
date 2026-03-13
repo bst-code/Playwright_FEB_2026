@@ -18,10 +18,10 @@ export class LoginPage extends playwrightGenerics
 
    constructor(page: Page)
    {
-     super();
+     super(page);
      this.emailEle = page.locator("#username")
      this.passwordEle = page.locator("#pwd")
-     this.loginButton = page.getByText("Login")
+     this.loginButton = page.getByText("Login").last()
      this.errorMsgEle = page.locator(".error")
    }
 

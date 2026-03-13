@@ -6,11 +6,13 @@ export class HomePage extends playwrightGenerics
 {
     readonly productEle:Locator
     readonly userEle: Locator
+    readonly page: Page
 
     constructor(page: Page)
     {
-        super()
-        this.productEle = page.getByText("Products")
+        super(page)
+        this.page = page
+        this.productEle = page.getByText("Products").first()
         this.userEle = page.getByText("Users")
     }
 
@@ -22,5 +24,10 @@ export class HomePage extends playwrightGenerics
      async clickProducts()
     {
         await this.clickElement(this.productEle)
+    }
+
+    async verifyProductNaigation()
+    {
+       return await this.getCurrentUrl(this.page)
     }
 }
