@@ -2,31 +2,44 @@ import { test, expect, Locator, Page } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage';
 import { HomePage } from '../pages/HomePage';
 import { ProductPage } from '../pages/ProductPage';
+import { Data } from "../testDatas/data.json"
+import "./hooks.ts"
+import { PageManager } from '../pages/PageManager.ts';
 
 
-test.only("Create New Product", async({page})=>
-{
-    let loginObj = new LoginPage(page)
-    let homeObj = new HomePage(page)
-    let prodObj = new ProductPage(page)
-    await page.goto("/login")
-    await loginObj.loginToApp("jhon1@gmail.com","test@123")
-    await homeObj.clickProducts()
-    await prodObj.clickAddProduct()
-    await prodObj.createProductForm("P1","Iphone", "Iphone 17", "200000", "Blue")
-    await page.waitForTimeout(5000)
+test.describe("Product testcases", async()=>{
+
+test("Create New Product", async ({ page }) => {
+
+    let pageManager = new PageManager(page); //Custom fixture 
+
+    //let loginObj = new LoginPage(page)
+   // let homeObj = new HomePage(page)
+   // let prodObj = new ProductPage(page)
+
+    const testcase = Data.TC_001
+
+    await pageManager.getLoginPage().loginToApp(Data.UserDetails.UserName, Data.UserDetails.Password)
+    await pageManager.getHomePage().clickProducts()
+    await pageManager.getProductPage().clickAddProduct()
+    await pageManager.getProductPage().createProductForm(testcase.ProductID, testcase.ProductName, testcase.ProductDescription, testcase.ProductPrice, testcase.ProductColor)
 
 })
 
-test("Verify product link takes to Product page", async({page})=>
-{
-    let loginObj = new LoginPage(page)
-    let homeObj = new HomePage(page)
-    await page.goto("/login")
+test("Verify product link takes to Product page", async ({ page }) => {
+    
+     let pageManager = new PageManager(page);
 
-    await loginObj.loginToApp("jhon1@gmail.com","test@123")
-    await homeObj.clickProducts()
-    let actualData = await homeObj.verifyProductNaigation()
-    expect(actualData).toContain("products")
+    // let loginObj = new LoginPage(page)
+    // let homeObj = new HomePage(page)
+
+    const testcase = Data.TC_002
+
+    await pageManager.getLoginPage().loginToApp(Data.UserDetails.UserName, Data.UserDetails.Password)
+    await pageManager.getHomePage().clickProducts()
+    let actualData = await pageManager.getHomePage().verifyProductNaigation()
+    expect(actualData).toContain(testcase.ExpectedText)
+
+})
 
 })

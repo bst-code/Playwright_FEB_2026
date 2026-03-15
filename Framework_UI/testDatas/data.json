@@ -1,0 +1,25 @@
+{
+
+    "Data":{
+        
+    "UserDetails":
+    {
+        "UserName": "jhon1@gmail.com",
+        "Password": "test@123"
+    },
+    "TC_001":
+    {
+        "ProductID":"002",
+        "ProductName":"MacBook",
+        "ProductDescription":"Mac Book pro",
+        "ProductPrice":"100000",
+        "ProductColor":"Blue"
+    },
+    "TC_002":
+    {
+        "ExpectedText":"products"
+    }
+
+    }
+
+}
