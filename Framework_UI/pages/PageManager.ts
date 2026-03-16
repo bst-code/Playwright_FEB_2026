@@ -1,5 +1,5 @@
 
-import { Page } from '@playwright/test';
+import { Page} from '@playwright/test';
 import { HomePage } from './HomePage';
 import { LoginPage } from './LoginPage';
 import { ProductPage } from './ProductPage';
