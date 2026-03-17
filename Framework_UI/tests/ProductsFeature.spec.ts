@@ -17,8 +17,12 @@ test("Create New Product", async ({ page, pageManager }) => {
    // let homeObj = new HomePage(page)
    // let prodObj = new ProductPage(page)
 
-    const testcase = Data.TC_001
+    console.log(process.env.ENV);
+    console.log(process.env.DB);
+    console.log(process.env.DB_USER_NAME);
+   
 
+    const testcase = Data.TC_001
     await pageManager.getLoginPage().loginToApp(Data.UserDetails.UserName, Data.UserDetails.Password)
     await pageManager.getHomePage().clickProducts()
     await pageManager.getProductPage().clickAddProduct()
