@@ -1,12 +1,12 @@
 import { Given, When, Then } from "@cucumber/cucumber"
+import { CustomWorld } from "../utils/world";
 
-Given('I open browser', async ()=> {
-    console.log("Browser opened");
-});
 
-Given('I goto login page {string}', async (url:string)=> {
+Given('I goto login page {string}', async function(this:CustomWorld,url:string) {
 
     console.log("Navigate to ",url );
+    await this.page.goto(url)
+    await this.page.waitForTimeout(3000)
 });
 
 When('I enter username {string} and Password {string}', async (userName:string, password:string)=> {

@@ -6,7 +6,7 @@
         ],
         "require": [
             "src/test/stepsDefinitions/**/*.ts",
-            "src/test/hook/*.ts"
+            "src/test/hooks/*.ts"
         ],
 
         "formatOptions": {

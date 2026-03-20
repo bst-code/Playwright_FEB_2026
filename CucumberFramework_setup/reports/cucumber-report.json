@@ -10,68 +10,71 @@
         "name": "Login with Valid userDetails",
         "steps": [
           {
-            "arguments": [],
-            "keyword": "Given ",
-            "line": 4,
-            "name": "I open browser",
-            "match": {
-              "location": "src\\test\\stepsDefinitions\\Login.step.ts:3"
-            },
+            "keyword": "Before",
+            "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 2290899
+              "duration": 1196165699
             }
           },
           {
             "arguments": [],
-            "keyword": "And ",
-            "line": 5,
+            "keyword": "Given ",
+            "line": 4,
             "name": "I goto login page \"https://playground.bsparksoftwaretechnologies.com/login\"",
             "match": {
-              "location": "src\\test\\stepsDefinitions\\Login.step.ts:7"
+              "location": "src\\test\\stepsDefinitions\\Login.step.ts:5"
             },
             "result": {
               "status": "passed",
-              "duration": 899099
+              "duration": 3582693199
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
-            "line": 6,
+            "line": 5,
             "name": "I enter username \"jhon1@gmail.com\" and Password \"test@123\"",
             "match": {
               "location": "src\\test\\stepsDefinitions\\Login.step.ts:12"
             },
             "result": {
               "status": "passed",
-              "duration": 728299
+              "duration": 4732900
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
-            "line": 7,
+            "line": 6,
             "name": "I Click login button",
             "match": {
               "location": "src\\test\\stepsDefinitions\\Login.step.ts:17"
             },
             "result": {
               "status": "passed",
-              "duration": 466799
+              "duration": 1049399
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
-            "line": 8,
+            "line": 7,
             "name": "I Validate home page title \"Dashboard\"",
             "match": {
               "location": "src\\test\\stepsDefinitions\\Login.step.ts:21"
             },
             "result": {
               "status": "passed",
-              "duration": 588799
+              "duration": 2751199
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 494739099
             }
           }
         ],
@@ -82,72 +85,75 @@
         "description": "",
         "id": "login-page-testcases;login-with-invalid-userdetails",
         "keyword": "Scenario",
-        "line": 11,
+        "line": 9,
         "name": "Login with InValid userDetails",
         "steps": [
           {
-            "arguments": [],
-            "keyword": "Given ",
-            "line": 12,
-            "name": "I open browser",
-            "match": {
-              "location": "src\\test\\stepsDefinitions\\Login.step.ts:3"
-            },
+            "keyword": "Before",
+            "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 613800
+              "duration": 804579499
             }
           },
           {
             "arguments": [],
-            "keyword": "And ",
-            "line": 13,
+            "keyword": "Given ",
+            "line": 10,
             "name": "I goto login page \"https://playground.bsparksoftwaretechnologies.com/login\"",
             "match": {
-              "location": "src\\test\\stepsDefinitions\\Login.step.ts:7"
+              "location": "src\\test\\stepsDefinitions\\Login.step.ts:5"
             },
             "result": {
               "status": "passed",
-              "duration": 509299
+              "duration": 3740526500
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
-            "line": 14,
+            "line": 11,
             "name": "I enter username \"xyz@gmail.com\" and Password \"xyz@123\"",
             "match": {
               "location": "src\\test\\stepsDefinitions\\Login.step.ts:12"
             },
             "result": {
               "status": "passed",
-              "duration": 662700
+              "duration": 2222299
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
-            "line": 15,
+            "line": 12,
             "name": "I Click login button",
             "match": {
               "location": "src\\test\\stepsDefinitions\\Login.step.ts:17"
             },
             "result": {
               "status": "passed",
-              "duration": 773799
+              "duration": 1003399
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
-            "line": 16,
+            "line": 13,
             "name": "I Validate error message \"Invalid email or password\"",
             "match": {
               "location": "src\\test\\stepsDefinitions\\Login.step.ts:25"
             },
             "result": {
               "status": "passed",
-              "duration": 572499
+              "duration": 1240799
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 396076300
             }
           }
         ],
