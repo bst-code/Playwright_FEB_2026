@@ -9,6 +9,8 @@
             "src/test/hooks/*.ts"
         ],
 
+        "tags":"@regression and @smoke",
+
         "formatOptions": {
             "snippetInterface": "async-wait"
         },
