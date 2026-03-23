@@ -1,7 +1,7 @@
 import{test,expect, Locator, Page} from "@playwright/test"
-import { playwrightGenerics } from '../utills/playwrightGenerics';
+import { BasePage } from './BasePage';
 
-export class ProductPage extends playwrightGenerics
+export class ProductPage extends BasePage
 { 
     readonly createPdtButton:Locator
     readonly productID:Locator

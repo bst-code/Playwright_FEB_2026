@@ -1,8 +1,8 @@
 import { test, expect, Locator, Page } from '@playwright/test';
-import { playwrightGenerics } from '../utills/playwrightGenerics';
+import { BasePage } from './BasePage';
 
 
-export class HomePage extends playwrightGenerics
+export class HomePage extends BasePage
 {
     readonly productEle:Locator
     readonly userEle: Locator
@@ -28,6 +28,6 @@ export class HomePage extends playwrightGenerics
 
     async verifyProductNaigation()
     {
-       return await this.getCurrentUrl(this.page)
+       return await this.getCurrentUrl()
     }
 }

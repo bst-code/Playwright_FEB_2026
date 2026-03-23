@@ -1,4 +1,4 @@
-import { Locator, Page, TestInfo } from "@playwright/test";
+import { Locator, Page, TestInfo, Frame } from "@playwright/test";
 
 
 export class playwrightGenerics
@@ -61,35 +61,157 @@ export class playwrightGenerics
         console.log("Selected Dropdown by label",dropdownValue);        
     }
     
-    async selectByIndex(ele:Locator,indexValue:number):Promise<void>
+    async selectByValue(ele:Locator,value:string):Promise<void>
     {
-        await ele.selectOption({index: indexValue})
-        console.log("Selected Dropdown by index",indexValue);        
+        await ele.selectOption({value: value})
+        console.log("Selected Dropdown by value",value);        
     }
 
-    //frame
+    // Button additional actions
+    async doubleClickElement(ele: Locator): Promise<void> {
+        await ele.dblclick();
+        console.log("Element double clicked");
+    }
 
-    //windowhandling
+    async rightClickElement(ele: Locator): Promise<void> {
+        await ele.click({ button: 'right' });
+        console.log("Element right clicked");
+    }
 
-    //alerts
+    // Frame handling
+    async switchToFrame(frameName: string): Promise<Frame> {
+        const frame = this.page.frame(frameName);
+        if (!frame) throw new Error(`Frame ${frameName} not found`);
+        console.log(`Switched to frame ${frameName}`);
+        return frame;
+    }
 
-    //hover
+    // Window handling
+    async getAllWindows(): Promise<Page[]> {
+        return this.page.context().pages();
+    }
 
-    //"visible" | "hidden" | "stable" | "enabled" | "disabled" | "editable
+    async switchToWindow(index: number): Promise<Page> {
+        const pages = await this.getAllWindows();
+        if (index >= pages.length) throw new Error(`Window at index ${index} not found`);
+        console.log(`Switched to window ${index}`);
+        return pages[index];
+    }
 
-    //screeshot - ele and page
+    // Alerts
+    async handleAlert(action: 'accept' | 'dismiss' = 'accept'): Promise<void> {
+        this.page.on('dialog', dialog => {
+            if (dialog.type() === 'alert') {
+                if (action === 'accept') {
+                    dialog.accept();
+                } else {
+                    dialog.dismiss();
+                }
+                console.log(`Alert ${action}ed`);
+            }
+        });
+    }
 
-    //browser commands - back, frwd, refresh, close, getTitle, url, navigateTo
+    async handleConfirm(action: 'accept' | 'dismiss' = 'accept'): Promise<void> {
+        this.page.on('dialog', dialog => {
+            if (dialog.type() === 'confirm') {
+                if (action === 'accept') {
+                    dialog.accept();
+                } else {
+                    dialog.dismiss();
+                }
+                console.log(`Confirm ${action}ed`);
+            }
+        });
+    }
 
-    async toPreviousPage(page:Page):Promise<void>
+    async handlePrompt(text: string = '', action: 'accept' | 'dismiss' = 'accept'): Promise<void> {
+        this.page.on('dialog', dialog => {
+            if (dialog.type() === 'prompt') {
+                if (action === 'accept') {
+                    dialog.accept(text);
+                } else {
+                    dialog.dismiss();
+                }
+                console.log(`Prompt ${action}ed with text: ${text}`);
+            }
+        });
+    }
+
+    // Hover
+    async hoverElement(ele: Locator): Promise<void> {
+        await ele.hover();
+        console.log("Hovered over element");
+    }
+
+    // Visibility states
+    async waitForElementState(ele: Locator, state: "visible" | "hidden" | "enabled" | "disabled" | "editable"): Promise<void> {
+        if (state === 'visible' || state === 'hidden') {
+            await ele.waitFor({ state });
+        } else {
+            await this.page.waitForFunction(async () => {
+                switch (state) {
+                    case 'enabled':
+                        return await ele.isEnabled();
+                    case 'disabled':
+                        return await ele.isDisabled();
+                    case 'editable':
+                        return await ele.isEditable();
+                    default:
+                        throw new Error(`Unsupported state: ${state}`);
+                }
+            });
+        }
+        console.log(`Waited for element to be ${state}`);
+    }
+
+    // Screenshots
+    async takePageScreenshot(fileName: string): Promise<void> {
+        await this.page.screenshot({ path: fileName });
+        console.log(`Page screenshot saved as ${fileName}`);
+    }
+
+    async takeElementScreenshot(ele: Locator, fileName: string): Promise<void> {
+        await ele.screenshot({ path: fileName });
+        console.log(`Element screenshot saved as ${fileName}`);
+    }
+
+    // Browser commands
+    async goForward(): Promise<void> {
+        await this.page.goForward();
+        console.log("Navigated forward");
+    }
+
+    async refreshPage(): Promise<void> {
+        await this.page.reload();
+        console.log("Page refreshed");
+    }
+
+    async getPageTitle(): Promise<string> {
+        const title = await this.page.title();
+        console.log(`Page title: ${title}`);
+        return title;
+    }
+
+    async navigateTo(url: string): Promise<void> {
+        await this.page.goto(url);
+        console.log(`Navigated to ${url}`);
+    }
+
+    async closeBrowser(): Promise<void> {
+        await this.page.close();
+        console.log("Browser closed");
+    }
+
+    async toPreviousPage():Promise<void>
     {
-        await page.goBack()
+        await this.page.goBack()
         console.log("Got back to previous page");        
     }
 
-    async getCurrentUrl(page: Page) : Promise<string>
+    async getCurrentUrl() : Promise<string>
     {
-        let currentURL = page.url()
+        let currentURL = this.page.url()
         console.log("Current URL s", currentURL);
         return currentURL
     }
