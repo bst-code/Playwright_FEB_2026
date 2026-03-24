@@ -1,5 +1,5 @@
 import { test, expect, Locator, Page } from '@playwright/test';
-import { playwrightGenerics } from '../utills/playwrightGenerics';
+import { BasePage } from './BasePage';
 
 
 // POM - Page object model ---> Desing patten --> It is used to store object repository for webelements
@@ -7,7 +7,7 @@ import { playwrightGenerics } from '../utills/playwrightGenerics';
 //1. Locate the webelements of that respective page 
 //2. Create page methods 
 
-export class LoginPage extends playwrightGenerics
+export class LoginPage extends BasePage
 {
 
    // Locate elements
@@ -28,15 +28,19 @@ export class LoginPage extends playwrightGenerics
    //Page methods -- No data should be hardcoded
    async loginToApp(username: string, password:string)
    {
-    await this.enterText(this.emailEle,username)
-    await this.enterText(this.passwordEle,password)
-    await this.clickElement(this.loginButton)
+    try {
+        await this.enterText(this.emailEle,username)
+        await this.enterText(this.passwordEle,password)
+        await this.clickElement(this.loginButton)
+    } catch (error) {
+        console.error('Error during login:', error);
+        throw error;
+    }
    }
 
    async getErrorMessage() 
    {
+       await this.waitForElementState(this.errorMsgEle, 'visible');
        return await this.getTextFromElement(this.errorMsgEle)
-   }
-
-   
+   }   
 }

@@ -22,6 +22,6 @@ test.beforeEach("Before Each", async ({ page }) => {
 test.afterEach("After each", async ({ page }) => {
 
     console.log("After Each called...");
-    await page.waitForTimeout(5000)
+    await page.waitForLoadState('networkidle');
 
 })
