@@ -1,0 +1,49 @@
+Relative Xpath
+
+//Tagname[@attributeName=‘Value’]
+
+Button = id =234
+
+//button[@id=234] or #234
+
+Button = class =demo
+
+//button[@class='demo'] or .demo
+
+button = id = 234 and name = inputbox
+
+//button[@id = 234 and @name = 'inputbox']
+//button[@id = 234 or @name = 'inputbox']
+
+(//button[@id = '234'])[1]
+
+div --> LinkElement = clickMe
+//div[text()='clickMe']
+
+div --> LinkElement = clickMe_6956589
+//div[contains(text(),'clickMe_')]
+//div[starts-with(text(),'clickMe_')]
+
+div --> LinkElement = class = fb_4837
+//div[contains(@class,'fb_')]
+
+
+follwing and preceding 
+
+(//div[contains(@class,'SendKeys_inputGroup__')])[1]/following::input[3]
+(//div[contains(@class,'SendKeys_inputGroup__')])[2]/preceding::input
+
+
+sibiling concept
+//label[text()='EMAIL']/following-sibling::input
+//label[text()='EMAIL']/following-sibling::input[1]
+
+//input[@id="email"]/preceding-sibling::label
+//input[@id="email"]/preceding-sibling::label[2]
+
+//child and parent
+(//div[contains(@class,'SendKeys_inputGroup__')])[1]/child::input[1]
+(//option[text()='SELENIUM'])[1]/parent::select
+
+normalize-space
+//a[normalize-space()='Sign in']
