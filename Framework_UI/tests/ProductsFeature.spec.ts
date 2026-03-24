@@ -12,7 +12,7 @@ const testData: TestData = Data;
 
 test.describe("Product testcases", ()=>{
 
-test("Create New Product", async ({ page, pageManager }) => {
+test.only("Create New Product", async ({ page, pageManager }) => {
 
     //let pageManager = new PageManager(page); //Custom fixture 
 
