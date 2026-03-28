@@ -7,16 +7,13 @@ pipeline {
 
   stages {
     stage('Checkout') {
-      steps {
-        checkout scm
-      }
+      steps { checkout scm }
     }
 
     stage('Install Node') {
       steps {
         script {
-          // if you use NodeTool in Jenkins
-          nodejsTool = tool name: 'NodeJS_24', type: 'nodejs'
+          def nodejsTool = tool name: 'NodeJS_24', type: 'nodejs'
           env.PATH = "${nodejsTool}/bin:${env.PATH}"
         }
       }
@@ -25,7 +22,7 @@ pipeline {
     stage('Install deps') {
       steps {
         dir('Framework_UI') {
-          sh 'npm ci'
+          bat 'npm ci'
         }
       }
     }
@@ -33,7 +30,7 @@ pipeline {
     stage('Install Playwright browsers') {
       steps {
         dir('Framework_UI') {
-          sh 'npx playwright install --with-deps'
+          bat 'npx playwright install --with-deps'
         }
       }
     }
@@ -41,7 +38,7 @@ pipeline {
     stage('Run tests') {
       steps {
         dir('Framework_UI') {
-          sh 'npx playwright test --reporter=html'
+          bat 'npx playwright test --reporter=html'
         }
       }
       post {
@@ -54,11 +51,7 @@ pipeline {
   }
 
   post {
-    success {
-      echo 'Tests passed'
-    }
-    failure {
-      echo 'Tests failed'
-    }
+    success { echo 'Tests passed' }
+    failure { echo 'Tests failed' }
   }
 }
