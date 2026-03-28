@@ -40,6 +40,15 @@ pipeline {
         dir('Framework_UI') {
           bat 'npx playwright test --reporter=html'
         }
+
+        publishHTML(target: [
+          allowMissing: false,
+          alwaysLinkToLastBuild: true,
+          keepAll: true,
+          reportDir: 'Framework_UI/playwright-report',
+          reportFiles: 'index.html',
+          reportName: 'Playwright HTML Report'
+        ])
       }
       post {
         always {
@@ -51,7 +60,38 @@ pipeline {
   }
 
   post {
-    success { echo 'Tests passed' }
-    failure { echo 'Tests failed' }
+    success {
+      echo 'Tests passed'
+      emailext(
+        subject: "[Jenkins] ${env.JOB_NAME} #${env.BUILD_NUMBER} SUCCESS",
+        body: """<p>Build Success</p>
+                <p>Job: ${env.JOB_NAME}</p>
+                <p>Build: ${env.BUILD_NUMBER}</p>
+                <p><a href="${env.BUILD_URL}">Open build</a></p>
+                <p>Report: <a href="${env.BUILD_URL}htmlreports/Playwright+HTML+Report/">HTML report</a></p>""",
+        recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
+        to: 'your-real-email@example.com'
+      )
+    }
+    failure {
+      echo 'Tests failed'
+      emailext(
+        subject: "[Jenkins] ${env.JOB_NAME} #${env.BUILD_NUMBER} FAILED",
+        body: """<p>Build Failed</p>
+                <p>Job: ${env.JOB_NAME}</p>
+                <p>Build: ${env.BUILD_NUMBER}</p>
+                <p><a href="${env.BUILD_URL}">Open build</a></p>""",
+        recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
+        to: 'your-real-email@example.com'
+      )
+    }
+    always {
+      emailext(
+        subject: "Playwright reports: ${currentBuild.currentResult}",
+        body: "See attached report artifact. Build: ${env.BUILD_URL}",
+        to: "your-real-email@example.com",
+        attachmentsPattern: 'Framework_UI/playwright-report/**'
+      )
+    }
   }
 }
