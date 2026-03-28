@@ -39,7 +39,8 @@ pipeline {
       steps {
         dir('Framework_UI') {
           bat 'npx playwright test --reporter=html --reporter=junit'
-          junit allowEmptyResults: true, testResults: 'Framework_UI/test-results/**/*.xml'        }
+          junit allowEmptyResults: true, testResults: 'Framework_UI/test-results.xml'
+        }
 
         publishHTML(target: [
           allowMissing: false,
@@ -69,6 +70,7 @@ pipeline {
                 <p>Build: ${env.BUILD_NUMBER}</p>
                 <p><a href="${env.BUILD_URL}">Open build</a></p>
                 <p>Report: <a href="${env.BUILD_URL}htmlreports/Playwright+HTML+Report/">HTML report</a></p>""",
+        mimeType: 'text/html',
         recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
         to: 'balatm1489@gmail.com'
       )
@@ -81,6 +83,7 @@ pipeline {
                 <p>Job: ${env.JOB_NAME}</p>
                 <p>Build: ${env.BUILD_NUMBER}</p>
                 <p><a href="${env.BUILD_URL}">Open build</a></p>""",
+        mimeType: 'text/html',
         recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
         to: 'balatm1489@gmail.com'
       )
@@ -89,6 +92,7 @@ pipeline {
       emailext(
         subject: "Playwright reports: ${currentBuild.currentResult}",
         body: "See attached report artifact. Build: ${env.BUILD_URL}",
+        mimeType: 'text/html',
         to: "balatm1489@gmail.com",
         attachmentsPattern: 'Framework_UI/playwright-report/**'
       )
