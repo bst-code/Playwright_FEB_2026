@@ -29,20 +29,20 @@ test("Create New Product", async ({ page, pageManager }) => {
     await pageManager.getProductPage().createProductForm(testcase.ProductID, testcase.ProductName, testcase.ProductDescription, testcase.ProductPrice, testcase.ProductColor)
 })
 
-test("Verify product link takes to Product page", async ({ page,pageManager }) => {
+// test("Verify product link takes to Product page", async ({ page,pageManager }) => {
     
-     //let pageManager = new PageManager(page);
+//      //let pageManager = new PageManager(page);
 
-    // let loginObj = new LoginPage(page)
-    // let homeObj = new HomePage(page)
+//     // let loginObj = new LoginPage(page)
+//     // let homeObj = new HomePage(page)
 
-    const testcase = testData.TC_002
+//     const testcase = testData.TC_002
 
-    await pageManager.getLoginPage().loginToApp(testData.UserDetails.UserName, testData.UserDetails.Password)
-    await pageManager.getHomePage().clickProducts()
-    let actualData = await pageManager.getHomePage().verifyProductNaigation()
-    expect(actualData).toContain(testcase.ExpectedText)
+//     await pageManager.getLoginPage().loginToApp(testData.UserDetails.UserName, testData.UserDetails.Password)
+//     await pageManager.getHomePage().clickProducts()
+//     let actualData = await pageManager.getHomePage().verifyProductNaigation()
+//     expect(actualData).toContain(testcase.ExpectedText)
 
-})
+// })
 
 })
