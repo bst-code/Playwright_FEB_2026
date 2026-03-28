@@ -51,7 +51,7 @@ export default defineConfig({
     {
       name: 'chromium',
        use: { ...devices['Desktop Chrome'],  
-          headless : false, // We can see browser vsiually
+          headless : true, // We can see browser vsiually
           viewport: null,
           deviceScaleFactor:undefined,
     launchOptions: {
