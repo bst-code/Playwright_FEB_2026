@@ -39,7 +39,7 @@ pipeline {
       steps {
         dir('Framework_UI') {
           bat 'npx playwright test --reporter=html --reporter=junit'
-        }
+          junit allowEmptyResults: true, testResults: 'Framework_UI/test-results/**/*.xml'        }
 
         publishHTML(target: [
           allowMissing: false,
