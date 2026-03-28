@@ -38,7 +38,7 @@ pipeline {
     stage('Run tests') {
       steps {
         dir('Framework_UI') {
-          bat 'npx playwright test --reporter=html'
+          bat 'npx playwright test --reporter=html --reporter=junit'
         }
 
         publishHTML(target: [
