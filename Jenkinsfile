@@ -70,7 +70,7 @@ pipeline {
                 <p><a href="${env.BUILD_URL}">Open build</a></p>
                 <p>Report: <a href="${env.BUILD_URL}htmlreports/Playwright+HTML+Report/">HTML report</a></p>""",
         recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
-        to: 'your-real-email@example.com'
+        to: 'balatm1489@gmail.com'
       )
     }
     failure {
@@ -82,14 +82,14 @@ pipeline {
                 <p>Build: ${env.BUILD_NUMBER}</p>
                 <p><a href="${env.BUILD_URL}">Open build</a></p>""",
         recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
-        to: 'your-real-email@example.com'
+        to: 'balatm1489@gmail.com'
       )
     }
     always {
       emailext(
         subject: "Playwright reports: ${currentBuild.currentResult}",
         body: "See attached report artifact. Build: ${env.BUILD_URL}",
-        to: "your-real-email@example.com",
+        to: "balatm1489@gmail.com",
         attachmentsPattern: 'Framework_UI/playwright-report/**'
       )
     }
