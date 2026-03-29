@@ -4,6 +4,7 @@ on:
     branches: [ main, master,CucumberFramework ]
   pull_request:
     branches: [ main, master,CucumberFramework ]
+    
 jobs:
   test:
     timeout-minutes: 60
