@@ -41,5 +41,7 @@ export class ProductPage extends BasePage
         await this.selectByLabel(this.colorDropdown,color)
         await this.clickElement(this.activeCheckbox)
         await this.clickElement(this.saveBtn)
+        console.log("End of testcases --",productID);
+        
     }
 }
